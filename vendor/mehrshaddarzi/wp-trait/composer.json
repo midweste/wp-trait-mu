@@ -1,0 +1,30 @@
+{
+  "name": "mehrshaddarzi/wp-trait",
+  "description": "Easy framework for fast and standard development of WordPress plugins",
+  "type": "package",
+  "require": {
+    "php": ">=8.1",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
+  "authors": [
+    {
+      "name": "Mehrshad Darzi",
+      "email": "mehrshad198@gmail.com",
+      "homepage": "https://github.com/mehrshaddarzi"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "WPTrait\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WPTraitTests\\": "tests/"
+    }
+  }
+}

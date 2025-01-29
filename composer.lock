@@ -1,0 +1,76 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "85b64324b9e0bf87ef0ddea3d14bd520",
+    "packages": [
+        {
+            "name": "mehrshaddarzi/wp-trait",
+            "version": "dev-codecide",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/midweste/wp-trait.git",
+                "reference": "854c042fe479674a0910e6d1d62a47881be8cfe4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/midweste/wp-trait/zipball/854c042fe479674a0910e6d1d62a47881be8cfe4",
+                "reference": "854c042fe479674a0910e6d1d62a47881be8cfe4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "WPTrait\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "WPTraitTests\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Mehrshad Darzi",
+                    "email": "mehrshad198@gmail.com",
+                    "homepage": "https://github.com/mehrshaddarzi"
+                }
+            ],
+            "description": "Easy framework for fast and standard development of WordPress plugins",
+            "support": {
+                "source": "https://github.com/midweste/wp-trait/tree/codecide"
+            },
+            "time": "2025-01-29T22:53:44+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [
+        {
+            "package": "mehrshaddarzi/wp-trait",
+            "version": "dev-codecide",
+            "alias": "1.0",
+            "alias_normalized": "1.0.0.0"
+        }
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "mehrshaddarzi/wp-trait": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.2"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}
