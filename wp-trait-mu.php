@@ -25,16 +25,43 @@ declare(strict_types=1);
  * Requires Plugins:
  */
 
-// Prevent the plugin from being loaded normally
-if (strpos(__DIR__, WPMU_PLUGIN_DIR) !== 0) {
-    // Deactivate the plugin if it is activated as a regular plugin
-    add_action('admin_init', function () {
-        deactivate_plugins(plugin_basename(__FILE__));
-        add_action('admin_notices', function () {
-            echo '<div class="error"><p><strong>WP-Trait Mu</strong> must be placed in the <code>mu-plugins</code> directory and cannot be activated as a regular plugin.</p></div>';
-        });
+// Hook into plugin activation
+register_activation_hook(__FILE__, function () {
+    $source = plugin_dir_path(__FILE__) . '/mu/wp-trait-mu-loader.php';
+    $destination = WPMU_PLUGIN_DIR . '/wp-trait-mu-loader.php';
+
+    if (!file_exists($destination)) {
+        if (!symlink($source, $destination)) {
+            add_action('admin_notices', function () {
+                echo '<div class="notice notice-error"><p>Failed to create a symlink for mu/wp-trait-mu.php in the mu-plugins directory. Please create it manually.</p></div>';
+            });
+            deactivate_plugins(plugin_basename(__FILE__));
+        }
+    }
+});
+
+// Hook into plugin deactivation
+register_deactivation_hook(__FILE__, function () {
+    $destination = WPMU_PLUGIN_DIR . '/wp-trait-mu-loader.php';
+
+    if (file_exists($destination) && is_link($destination)) {
+        unlink($destination);
+    }
+});
+
+// Hook into plugin uninstall
+// register_uninstall_hook(__FILE__, function () {
+//     $destination = WPMU_PLUGIN_DIR . '/wp-trait-mu-loader.php';
+
+//     if (file_exists($destination) && is_link($destination)) {
+//         unlink($destination);
+//     }
+// });
+
+if (!defined('WPMU_PLUGIN_DIR') || !file_exists(WPMU_PLUGIN_DIR . '/wp-trait-mu-loader.php')) {
+    add_action('admin_notices', function () {
+        echo '<div class="notice notice-error"><p>This plugin can only be activated by creating a symlink in the mu-plugins directory or copying mu/wp-trait-mu-loader.php to the mu-plugins directory.</p></div>';
     });
+    deactivate_plugins(plugin_basename(__FILE__));
     return;
 }
-
-file_exists(__DIR__ . '/vendor/autoload.php') && require_once __DIR__ . '/vendor/autoload.php';
